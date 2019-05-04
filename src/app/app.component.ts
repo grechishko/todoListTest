@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TodoService } from './todo.service';
 import { Todo } from './todo';
 
 @Component({
@@ -7,18 +8,17 @@ import { Todo } from './todo';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  todo: Todo[] = [new Todo('Code a todo list', true), 
-                  new Todo('Learn something else', false),
-                  new Todo('Learn basic Angular', false)];
-
+  todo: Todo[]          = [];
+  isactive: boolean     = false;
   sortByStatus: boolean = false;
-  itemToAdd: string = '';
+  itemToAdd: string     = '';
+  todoUnsorted: Todo[]  = [];
 
-  todoUnsorted: Todo[] = [];
+  constructor(private todoService: TodoService) {}
 
-
-  constructor() {}
-
+    ngOnInit() {
+        this.todo = this.todoService.getTodo();
+    }
 
   toggleCheck(item:Todo) {
     item.done = !item.done;

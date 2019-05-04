@@ -1,0 +1,5 @@
+<form name="newform" [formGroup]="newTodo">
+  <label for="newitem">Add to the todo list</label>
+  <input type="text" id="newitem" formControlName="label">
+  <button type="submit" [disabled]="!newTodo.valid" (click)="add()">Add</button>
+</form>
