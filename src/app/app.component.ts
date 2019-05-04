@@ -8,6 +8,25 @@ import { Todo } from './todo';
 })
 export class AppComponent {
   todo: Todo[] = [new Todo()];
+
+  isactive: Boolean = false;
+
+  constructor() {}
+
+
+  toggleCheck(item:Todo) {
+    console.log("check toggle");
+  }
+
+  deleteItem(item:Todo) {
+    console.log("item deleted");
+  }
+
+  onToggle() {
+    this.isactive = !this.isactive;
+    console.log(this.isactive);
+  }
+
 }
 
 

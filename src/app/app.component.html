@@ -20,12 +20,12 @@
     </div>
     
     <!-- toggle button -->
-    <div class="togglebutton-wrapper" [class]="isactive ? 'togglebutton-checked' : ''">
+    <div class="togglebutton-wrapper" [class.togglebutton-checked]="isactive">
       <label for="todosort">
         <span class="togglebutton-label">Move done items at the end?</span>
         <span class="tooglebutton-box"></span>
       </label>
-      <input id="todosort" type="checkbox" name="todosort" (change)="onToogle()">
+      <input id="todosort" type="checkbox" name="todosort" (change)="onToggle()">
     </div>
 
   </div>
