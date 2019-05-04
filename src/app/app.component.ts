@@ -7,18 +7,22 @@ import { Todo } from './todo';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  todo: Todo[] = [new Todo()];
+  todo: Todo[] = [new Todo('Code a todo list', true), 
+                  new Todo('Learn something else', false),
+                  new Todo('Learn basic Angular', false)];
 
-  isactive: Boolean = false;
+  isactive: boolean = false;
 
   constructor() {}
 
 
   toggleCheck(item:Todo) {
+    item.done = !item.done;
     console.log("check toggle");
   }
 
-  deleteItem(item:Todo) {
+  deleteItem(index:number) {
+    this.todo.splice(index, 1);
     console.log("item deleted");
   }
 

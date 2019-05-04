@@ -6,13 +6,13 @@
 
   <div *ngIf="todo.length">
     <div name="todolist" tag="ul">
-      <li *ngFor="let item of todo" [class]="item.done ? 'done' : ''">
+      <li *ngFor="let item of todo; let i = index " [class]="item.done ? 'done' : ''">
         <span class="label">{{item.label}}</span>
         <div class="actions">
           <button class="btn-picto" type="button" (click)="toggleCheck(item)" aria-label="item.done ? 'Undone' : 'Done'" title="item.done ? 'Undone' : 'Done'">
             <i aria-hidden="true" class="material-icons">{{ item.done ? 'check_box' : 'check_box_outline_blank' }}</i>
           </button>
-          <button class="btn-picto" type="button" (click)="deleteItem(item)" aria-label="Delete" title="Delete">
+          <button class="btn-picto" type="button" (click)="deleteItem(i)" aria-label="Delete" title="Delete">
             <i aria-hidden="true" class="material-icons">delete</i>
           </button>
         </div>
