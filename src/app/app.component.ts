@@ -36,7 +36,7 @@ export class AppComponent {
       return;
     }
     
-    let sortedArray = []
+    let sortedArray = [];
     let doneArray = this.todo.filter(function(item) { return item.done; });
     let notDoneArray = this.todo.filter(function(item) { return !item.done; });
     sortedArray = [...notDoneArray, ...doneArray];
