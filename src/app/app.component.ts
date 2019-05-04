@@ -49,6 +49,7 @@ export class AppComponent {
     if (!this.itemToAdd) return;
     let newItem = new Todo(this.itemToAdd, false);
     this.todo.push(newItem);
+    this.todoUnsorted.push(newItem);
     this.itemToAdd = '';
   }
 
