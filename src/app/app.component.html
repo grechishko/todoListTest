@@ -5,7 +5,7 @@
   </h1>
 
   <div *ngIf="todo.length">
-    <div name="todolist" tag="ul">
+    <ul name="todolist">
       <li *ngFor="let item of todo; let i = index " [class]="item.done ? 'done' : ''">
         <span class="label">{{item.label}}</span>
         <div class="actions">
@@ -17,7 +17,7 @@
           </button>
         </div>
       </li>
-    </div>
+    </ul>
     
     <!-- toggle button -->
     <div class="togglebutton-wrapper" [class.togglebutton-checked]="isactive">
@@ -31,7 +31,7 @@
   </div>
 
 
-  <!-- <p v-else class="emptylist">Your todo list is empty.</p> -->
+  <p *ngIf="!todo.length" class="emptylist">Your todo list is empty.</p>
   
 
   <!-- Форма добавления --> 

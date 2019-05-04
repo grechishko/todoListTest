@@ -18,17 +18,14 @@ export class AppComponent {
 
   toggleCheck(item:Todo) {
     item.done = !item.done;
-    console.log("check toggle");
   }
 
   deleteItem(index:number) {
     this.todo.splice(index, 1);
-    console.log("item deleted");
   }
 
   onToggle() {
     this.isactive = !this.isactive;
-    console.log(this.isactive);
   }
 
 }
