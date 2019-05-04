@@ -5,6 +5,7 @@
   </h1>
 
   <div *ngIf="todo.length">
+    <!-- Список дел -->
     <ul name="todolist">
       <li *ngFor="let item of todo; let i = index " [class]="item.done ? 'done' : ''">
         <span class="label">{{item.label}}</span>
@@ -17,8 +18,7 @@
           </button>
         </div>
       </li>
-    </ul>
-    
+    </ul>    
     <!-- toggle button -->
     <div class="togglebutton-wrapper" [class.togglebutton-checked]="isactive">
       <label for="todosort">
@@ -27,17 +27,14 @@
       </label>
       <input id="todosort" type="checkbox" name="todosort" (change)="onToggle()">
     </div>
-
   </div>
 
-
-  <p *ngIf="!todo.length" class="emptylist">Your todo list is empty.</p>
-  
+  <p *ngIf="!todo.length" class="emptylist">Your todo list is empty.</p>  
 
   <!-- Форма добавления --> 
   <form name="newform">
     <label for="newitem">Add to the todo list</label>
-    <input type="text" name="newitem" id="newitem" >
-    <button type="submit">Add item</button>
+    <input type="text" name="newitem" id="newitem" [(ngModel)]="itemToAdd">
+    <button type="button" (click)="addTodoElement()">Add item</button>
   </form>
 </main>

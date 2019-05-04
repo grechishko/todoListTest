@@ -12,6 +12,7 @@ export class AppComponent {
                   new Todo('Learn basic Angular', false)];
 
   isactive: boolean = false;
+  itemToAdd: string = '';
 
   constructor() {}
 
@@ -26,6 +27,12 @@ export class AppComponent {
 
   onToggle() {
     this.isactive = !this.isactive;
+  }
+
+  addTodoElement() {
+    let newItem = new Todo(this.itemToAdd, false);
+    this.todo.push(newItem);
+    this.itemToAdd = '';
   }
 
 }
