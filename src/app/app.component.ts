@@ -11,8 +11,11 @@ export class AppComponent {
                   new Todo('Learn something else', false),
                   new Todo('Learn basic Angular', false)];
 
-  isactive: boolean = false;
+  sortByStatus: boolean = false;
   itemToAdd: string = '';
+
+  todoUnsorted: Todo[] = [];
+
 
   constructor() {}
 
@@ -26,7 +29,20 @@ export class AppComponent {
   }
 
   onToggle() {
-    this.isactive = !this.isactive;
+    this.sortByStatus = !this.sortByStatus;
+
+    if (!this.sortByStatus) {
+      this.todo = this.todoUnsorted;
+      return;
+    }
+    
+    let sortedArray = []
+    let doneArray = this.todo.filter(function(item) { return item.done; });
+    let notDoneArray = this.todo.filter(function(item) { return !item.done; });
+    sortedArray = [...notDoneArray, ...doneArray];
+    
+    this.todoUnsorted = this.todo;
+    this.todo = sortedArray;
   }
 
   addTodoElement() {
