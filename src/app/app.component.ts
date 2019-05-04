@@ -8,8 +8,11 @@ import { Todo } from './todo';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    todo: Todo[];
-  isactive: boolean = false;
+  todo: Todo[]          = [];
+  isactive: boolean     = false;
+  sortByStatus: boolean = false;
+  itemToAdd: string     = '';
+  todoUnsorted: Todo[]  = [];
 
   constructor(private todoService: TodoService) {}
 
@@ -19,17 +22,35 @@ export class AppComponent {
 
   toggleCheck(item:Todo) {
     item.done = !item.done;
-    console.log("check toggle");
   }
 
   deleteItem(index:number) {
     this.todo.splice(index, 1);
-    console.log("item deleted");
   }
 
   onToggle() {
-    this.isactive = !this.isactive;
-    console.log(this.isactive);
+    this.sortByStatus = !this.sortByStatus;
+
+    if (!this.sortByStatus) {
+      this.todo = this.todoUnsorted;
+      return;
+    }
+    
+    let sortedArray = []
+    let doneArray = this.todo.filter(function(item) { return item.done; });
+    let notDoneArray = this.todo.filter(function(item) { return !item.done; });
+    sortedArray = [...notDoneArray, ...doneArray];
+    
+    this.todoUnsorted = this.todo;
+    this.todo = sortedArray;
+  }
+
+  addTodoElement() {
+    if (!this.itemToAdd) return;
+    let newItem = new Todo(this.itemToAdd, false);
+    this.todo.push(newItem);
+    this.todoUnsorted.push(newItem);
+    this.itemToAdd = '';
   }
 
 }

@@ -5,7 +5,8 @@
   </h1>
 
   <div *ngIf="todo.length">
-    <div name="todolist" tag="ul">
+    <!-- Список дел -->
+    <ul name="todolist">
       <li *ngFor="let item of todo; let i = index " [class]="item.done ? 'done' : ''">
         <span class="label">{{item.label}}</span>
         <div class="actions">
@@ -17,20 +18,17 @@
           </button>
         </div>
       </li>
-    </div>
-    
+    </ul>    
     <!-- toggle button -->
-    <div class="togglebutton-wrapper" [class.togglebutton-checked]="isactive">
+    <div class="togglebutton-wrapper" [class.togglebutton-checked]="sortByStatus">
       <label for="todosort">
         <span class="togglebutton-label">Move done items at the end?</span>
         <span class="tooglebutton-box"></span>
       </label>
       <input id="todosort" type="checkbox" name="todosort" (change)="onToggle()">
     </div>
-
   </div>
 
-
-  <!-- <p v-else class="emptylist">Your todo list is empty.</p> -->
+  <p *ngIf="!todo.length" class="emptylist">Your todo list is empty.</p>
   <add-form></add-form>
 </main>
