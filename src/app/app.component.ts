@@ -30,6 +30,7 @@ export class AppComponent {
   }
 
   addTodoElement() {
+    if (!this.itemToAdd) return;
     let newItem = new Todo(this.itemToAdd, false);
     this.todo.push(newItem);
     this.itemToAdd = '';
