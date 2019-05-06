@@ -27,17 +27,8 @@ export class AppComponent {
 
   onToggle() {
     this.sortByStatus = !this.sortByStatus;
-
-    if (!this.sortByStatus) {
-      this.todo.sort((a, b) => (a.id - b.id));
-      return;
-    }
-    
-    let sortedArray = [];
-    let doneArray = this.todo.filter(item => item.done);
-    let notDoneArray = this.todo.filter(item => !item.done);
-    sortedArray = [...notDoneArray, ...doneArray];    
-    this.todo = sortedArray;
+    if (!this.sortByStatus) this.todo.sort((a, b) => (a.id - b.id));    
+      else this.todo.sort((a, b) => (Number(a.done) - Number(b.done)));
   }
 
 }
