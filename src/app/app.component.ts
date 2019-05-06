@@ -8,23 +8,20 @@ import { Todo } from './todo';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  todo: Todo[]          = [];
-  isactive: boolean     = false;
+  todo: Todo[] = [];
   sortByStatus: boolean = false;
-  itemToAdd: string     = '';
-  todoUnsorted: Todo[]  = [];
 
   constructor(private todoService: TodoService) {}
 
     ngOnInit() {
-        this.todo = this.todoService.getTodo();
+      this.todo = this.todoService.getTodo();
     }
 
-  toggleCheck(item:Todo) {
+  toggleCheck(item: Todo) {
     item.done = !item.done;
   }
 
-  deleteItem(index:number) {
+  deleteItem(index: number) {
     this.todo.splice(index, 1);
   }
 
@@ -32,25 +29,15 @@ export class AppComponent {
     this.sortByStatus = !this.sortByStatus;
 
     if (!this.sortByStatus) {
-      this.todo = this.todoUnsorted;
+      this.todo.sort((a, b) => (a.id - b.id));
       return;
     }
     
     let sortedArray = [];
-    let doneArray = this.todo.filter(function(item) { return item.done; });
-    let notDoneArray = this.todo.filter(function(item) { return !item.done; });
-    sortedArray = [...notDoneArray, ...doneArray];
-    
-    this.todoUnsorted = this.todo;
+    let doneArray = this.todo.filter(item => item.done);
+    let notDoneArray = this.todo.filter(item => !item.done);
+    sortedArray = [...notDoneArray, ...doneArray];    
     this.todo = sortedArray;
-  }
-
-  addTodoElement() {
-    if (!this.itemToAdd) return;
-    let newItem = new Todo(this.itemToAdd, false);
-    this.todo.push(newItem);
-    this.todoUnsorted.push(newItem);
-    this.itemToAdd = '';
   }
 
 }

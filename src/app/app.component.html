@@ -9,7 +9,7 @@
     <ul name="todolist">
       <li *ngFor="let item of todo; let i = index " [class]="item.done ? 'done' : ''">
         <span class="label">{{item.label}}</span>
-        <div class="actions">
+        <div class="actions todolist-move">
           <button class="btn-picto" type="button" (click)="toggleCheck(item)" aria-label="item.done ? 'Undone' : 'Done'" title="item.done ? 'Undone' : 'Done'">
             <i aria-hidden="true" class="material-icons">{{ item.done ? 'check_box' : 'check_box_outline_blank' }}</i>
           </button>
