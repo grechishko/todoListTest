@@ -9,7 +9,6 @@ import { Todo } from './todo';
 })
 export class AppComponent {
   todo: Todo[] = [];
-  sortByStatus: boolean = false;
 
   constructor(private todoService: TodoService) {}
 
@@ -26,9 +25,8 @@ export class AppComponent {
   }
 
   onToggle() {
-    this.sortByStatus = !this.sortByStatus;
-    if (!this.sortByStatus) this.todo.sort((a, b) => (a.id - b.id));    
-      else this.todo.sort((a, b) => (Number(a.done) - Number(b.done)));
+    this.todoService.sortByStatus = !this.todoService.sortByStatus;
+    this.todoService.sort();
   }
 
 }
